@@ -142,6 +142,57 @@
         ];
         // Add your JavaScript code here.
         // Later, move this to an external JavaScript file for better organization.
+
+        let viewCount = 0; 
+
+        function updateCounter() {
+        document.getElementById('counter').innerText = `Artworks Viewed: ${viewedCount}`;
+        }
+
+        function onArtPanelClick(event) {
+            const panel = event.currentTarget;
+            if (!panel.classList.contains('viewed')) {
+                panel.classList.add('viewed');
+                panel.style.backgroundColor = '#c3e6cb'; 
+                viewedCount++;
+                updateCounter();
+            }
+        }
+
+        document.querySelectorAll('.art-panel').forEach(panel => {
+            panel.addEventListener('click', onArtPanelClick);
+        });
+
+        function addNewArtwork() {
+            const randArtwork = newArtworks[Math.floor(Math.random() * newArtworks.length)];
+            const newPanel = document.createElement('div');
+            newPanel.classList.add('art-panel');
+            const imgElement = document.createElement('img');
+            imgElement.src = randArtwork.img;
+            imgElement.alt = `${randArtwork.title} by ${randArtwork.artist}`;
+            const titleElement = document.createElement('p');
+            titleElement.innerText = `${randArtwork.title} by ${randArtwork.artist}`;
+            newPanel.appendChild(imgElement);
+            newPanel.appendChild(titleElement);
+            newPanel.addEventListener('click', onArtPanelClick);
+            document.querySelector('.art-grid').appendChild(newPanel);
+        }
+
+        document.getElementById('add-art-button').addEventListener('click', addNewArtwork);
+
+        function resetGallery() {
+            document.querySelectorAll('.art-panel').forEach(panel => {
+                panel.classList.remove('viewed');
+                panel.style.backgroundColor = '#eee'; 
+        });
+
+            viewedCount = 0;
+            updateCounter();
+        }
+
+        document.getElementById('reset-button').addEventListener('click', resetGallery);
+        updateCounter(); 
+ 
     </script>
 </body>
 
