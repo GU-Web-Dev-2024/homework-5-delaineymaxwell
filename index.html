@@ -153,7 +153,7 @@
             const panel = event.currentTarget;
             if (!panel.classList.contains('viewed')) {
                 panel.classList.add('viewed');
-                panel.style.backgroundColor = '#c3e6cb'; 
+                panel.style.backgroundColor = '#FBEAEB'; 
                 viewedCount++;
                 updateCounter();
             }
@@ -183,7 +183,7 @@
         function resetGallery() {
             document.querySelectorAll('.art-panel').forEach(panel => {
                 panel.classList.remove('viewed');
-                panel.style.backgroundColor = '#eee'; 
+                panel.style.backgroundColor = '#F7CBC9'; 
         });
 
             viewedCount = 0;
